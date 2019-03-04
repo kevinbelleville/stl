@@ -1,0 +1,18 @@
+import struct
+
+filename = "40mmcube.stl"
+
+binlist = []
+
+with open(filename, "rb") as file:
+	# remove 80 char header
+	print(file.read(80))
+	while True:
+		bin = struct.unpack('I', file.read(4))[0]
+		if not bin:
+			break
+		str_bin = str(bin)
+		print(str_bin)
+		binlist.append(str_bin)
+	
+print(binlist)
